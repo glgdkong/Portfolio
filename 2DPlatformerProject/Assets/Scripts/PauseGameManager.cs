@@ -7,8 +7,10 @@ public class PauseGameManager : MonoBehaviour
 {
     private bool isPaused = false; // 일시 정지 여부
     private bool isLoading = false;
+    private bool inventoryPopupOpen;
 
     [SerializeField] private PausePopupComponent popup;
+
 
     // 이벤트 델리게이트 메소드 원형 선언 (델리게이트 타입 선언)
     public delegate void OnPauseDelegate(); // 일시 정지 이벤트 델리게이트 선언
@@ -20,10 +22,13 @@ public class PauseGameManager : MonoBehaviour
     public static OnResumeDelegate onResumeDelegate;
 
     public bool IsLoading { get => isLoading; set => isLoading = value; }
+    public bool InventoryPopupOpen { get => inventoryPopupOpen; set => inventoryPopupOpen = value; }
 
     // Update is called once per frame
     void Update()
     {
+        if (inventoryPopupOpen) return;
+
         if (Input.GetKeyDown(KeyCode.Escape)&& !IsLoading)
         {
             TogglePause();  // 일시 정지 처리 반전 

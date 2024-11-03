@@ -30,7 +30,6 @@ public class LoadSceneManager : GameManager
             }
             else
             {
-                playerInputMovement.IsGrounded = playerInputMovement.IsGroundedMethod();
                 playerInputMovement.Rigidbody2D.velocity = -Vector3.up * 10f; 
             }
             playerHpControl.gameObject.GetComponent<Animator>().SetFloat("Move", Mathf.Abs(1f));

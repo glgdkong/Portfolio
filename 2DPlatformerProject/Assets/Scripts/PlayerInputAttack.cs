@@ -64,4 +64,28 @@ public class PlayerInputAttack : AttackComopnent
        slash.transform.position = attackPosition.position;
        slash.transform.rotation = attackPosition.rotation;
     }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        InventorySystem.openInventory += InventoryOpen;
+        InventorySystem.closeInventory += InventoryClose;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        InventorySystem.openInventory -= InventoryOpen;
+        InventorySystem.closeInventory -= InventoryClose;
+    }
+
+
+
+    private void InventoryOpen()
+    {
+        isPaused = true;
+    }
+    private void InventoryClose()
+    {
+        isPaused = false;
+    }
 }

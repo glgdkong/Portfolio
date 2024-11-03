@@ -33,6 +33,7 @@ public class PlayerInputMovement : DirectionHorizontalMovement
     }
     protected override void Update()
     {
+        IsGroundedMethod();
         // 로딩 중이 거나 넉백 상태면 중지
         if (IsLoading || isKnockbacking || isPaused) return;
 
@@ -44,9 +45,6 @@ public class PlayerInputMovement : DirectionHorizontalMovement
 
     protected override void Move()
     {
-        // * Collider 충돌콜라이더참조 = Physics2D.OverlapCircle(충돌체크위치, 충돌체크크기, 충돌레이어);
-        // 캐릭터 바닥 착지 여부를 체크함
-        IsGrounded = IsGroundedMethod();
 
         float moveInput = Input.GetAxisRaw("Horizontal");
 
@@ -66,8 +64,6 @@ public class PlayerInputMovement : DirectionHorizontalMovement
         animator.SetFloat("Move", Mathf.Abs(moveInput));
 
 
-        // 바닥 착지 관련 애니메이션 파라미터 설정
-        animator.SetBool("IsGround", IsGrounded);
         // 수직 상승/하강 관련 애니메이션 파라미터 설정
         animator.SetFloat("Vertical", rigidbody2D.velocity.y);
 
@@ -115,18 +111,38 @@ public class PlayerInputMovement : DirectionHorizontalMovement
         yield break;
     }
 
-    public bool IsGroundedMethod()
+    public void IsGroundedMethod()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // * Collider 충돌콜라이더참조 = Physics2D.OverlapCircle(충돌체크위치, 충돌체크크기, 충돌레이어);
+        // 캐릭터 바닥 착지 여부를 체크함
+        IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // 바닥 착지 관련 애니메이션 파라미터 설정
+        animator.SetBool("IsGround", IsGrounded);
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        InventorySystem.openInventory += InventoryOpen;
+        InventorySystem.closeInventory += InventoryClose;
     }
 
-    protected override void OnPause()
+    protected override void OnDisable()
     {
-        base.OnPause();
+        base.OnDisable();
+        InventorySystem.openInventory -= InventoryOpen;
+        InventorySystem.closeInventory -= InventoryClose;
+    }
 
-    }
-    protected override void OnResume()
+
+
+    private void InventoryOpen()
     {
-        base.OnResume();
+        isPaused = true;
+        rigidbody2D.velocity = Vector2.zero;
     }
+    private void InventoryClose()
+    {
+        isPaused = false;
+    }
+
 }

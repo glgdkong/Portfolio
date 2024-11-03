@@ -21,8 +21,8 @@ public abstract class Movement : MonoBehaviour
     public Rigidbody2D Rigidbody2D { get => rigidbody2D; set => rigidbody2D = value; }
     public Vector2 MoveDirection { get => moveDirection; set => moveDirection = value; }
 
-    private Vector2 pauseVectorSave;
-    private float pauseGravityScaleSave;
+    protected Vector2 pauseVectorSave;
+    protected float pauseGravityScaleSave;
 
     protected virtual void Awake()
     {

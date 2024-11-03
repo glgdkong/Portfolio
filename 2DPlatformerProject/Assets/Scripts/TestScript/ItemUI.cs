@@ -11,6 +11,10 @@ public class ItemUI : MonoBehaviour
     [SerializeField] private Image itemImage;
     // 인벤토리 UI
     private InventoryUI inventoryUI;
+    // 아이템 선택 여부
+    [SerializeField] private bool isSelected = false;
+    [SerializeField] private Color32 selectColor;
+    [SerializeField] private Color32 deSelectColor;
 
 
     // Start is called before the first frame update
