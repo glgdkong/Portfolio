@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Item
+  - World
+  - Ground
+  - Trap
+  - Platform
+  - Block
+  - FxTemporaire
+  - GameManager
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Enviroment
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Trun
+  - Item
+  - Platform
+  - Trap
+  - Effect
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BackGround
+    uniqueID: 3146913753
+    locked: 0
+  - name: Ground
+    uniqueID: 1454403191
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: EnemyBullet
+    uniqueID: 2849900721
+    locked: 0
+  - name: Enemy
+    uniqueID: 2151927959
+    locked: 0
+  - name: Item
+    uniqueID: 1424358059
+    locked: 0
+  - name: Player
+    uniqueID: 4119644121
+    locked: 0
