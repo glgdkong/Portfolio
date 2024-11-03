@@ -50,6 +50,11 @@ public class InventorySystem : MonoBehaviour
             OpenInventoryMethod();
         }
     }
+
+
+
+
+
     protected virtual void OnEnable()
     {
         // 현재 컴포넌트는 게임 일시 정지 알림(이벤트)를 받을 수 있게 델리게이트 메소드를 등록함
